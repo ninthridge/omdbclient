@@ -14,7 +14,7 @@ public class OmdbClientTest {
   public void testSearchForMovieByBadImdbId() throws Exception {
     String imdbId = "tt1480055000";
     try {
-      OmdbClient.search(imdbId, null, null, null, null, null, true, true);
+      new OmdbClient().search(imdbId, null, null, null, null, null, true, true);
       Assert.fail("Should have thrown an exception");
     }
     catch(OmdbException e) {
@@ -25,7 +25,7 @@ public class OmdbClientTest {
   @Test
   public void testSearchForMovieByImdbId() throws Exception {
     String imdbId = "tt0468569";
-    OmdbVideo omdbVideo = OmdbClient.search(imdbId, null, null, null, null, null, true, true);
+    OmdbVideo omdbVideo = new OmdbClient().search(imdbId, null, null, null, null, null, true, true);
     Assert.assertEquals(imdbId, omdbVideo.getImdbId());
     Assert.assertEquals("The Dark Knight", omdbVideo.getTitle());
     Assert.assertEquals("2008", omdbVideo.getYear());
@@ -35,7 +35,7 @@ public class OmdbClientTest {
   @Test
   public void testSearchForSeriesByImdbId() throws Exception {
     String imdbId = "tt0944947";
-    OmdbVideo omdbVideo = OmdbClient.search(imdbId, null, null, null, null, null, true, true);
+    OmdbVideo omdbVideo = new OmdbClient().search(imdbId, null, null, null, null, null, true, true);
     Assert.assertEquals(imdbId, omdbVideo.getImdbId());
     Assert.assertEquals("Game of Thrones", omdbVideo.getTitle());
     Assert.assertTrue(omdbVideo.getYear().startsWith("2011"));
@@ -45,7 +45,7 @@ public class OmdbClientTest {
   @Test
   public void testSearchForEpisodeByImdbId() throws Exception {
     String imdbId = "tt1480055";
-    OmdbVideo omdbVideo = OmdbClient.search(imdbId, null, null, null, null, null, true, true);
+    OmdbVideo omdbVideo = new OmdbClient().search(imdbId, null, null, null, null, null, true, true);
     Assert.assertEquals(imdbId, omdbVideo.getImdbId());
     Assert.assertEquals("Winter Is Coming", omdbVideo.getTitle());
     Assert.assertTrue(omdbVideo.getYear().startsWith("2011"));
@@ -56,7 +56,7 @@ public class OmdbClientTest {
   
   @Test
   public void testSearchForEpisodeBySeriesImdbId() throws Exception {
-    OmdbVideo omdbVideo = OmdbClient.search("tt0944947", null, null, 1, 1, null, true, true);
+    OmdbVideo omdbVideo = new OmdbClient().search("tt0944947", null, null, 1, 1, null, true, true);
     Assert.assertEquals("tt1480055", omdbVideo.getImdbId());
     Assert.assertEquals("Winter Is Coming", omdbVideo.getTitle());
     Assert.assertTrue(omdbVideo.getYear().startsWith("2011"));
@@ -69,7 +69,7 @@ public class OmdbClientTest {
   public void testSearchForMovie() throws Exception {
     String title = "The Dark Knight";
     Integer year = 2008;
-    OmdbVideo omdbVideo = OmdbClient.search(null, title, year, null, null, Type.movie, true, true);
+    OmdbVideo omdbVideo = new OmdbClient().search(null, title, year, null, null, Type.movie, true, true);
     Assert.assertEquals("tt0468569", omdbVideo.getImdbId());
     Assert.assertEquals(title, omdbVideo.getTitle());
     Assert.assertEquals(year.toString(), omdbVideo.getYear());
@@ -79,7 +79,7 @@ public class OmdbClientTest {
   @Test
   public void testSearchForSeries() throws Exception {
     String title = "Game of Thrones";
-    OmdbVideo omdbVideo = OmdbClient.search(null, title, null, null, null, Type.series, true, true);
+    OmdbVideo omdbVideo = new OmdbClient().search(null, title, null, null, null, Type.series, true, true);
     Assert.assertEquals("tt0944947", omdbVideo.getImdbId());
     Assert.assertEquals("Game of Thrones", omdbVideo.getTitle());
     Assert.assertTrue(omdbVideo.getYear().startsWith("2011"));
@@ -91,7 +91,7 @@ public class OmdbClientTest {
     String title = "Game of Thrones";
     Integer season = 1;
     Integer episode = 1;
-    OmdbVideo omdbVideo = OmdbClient.search(null, title, null, season, episode, Type.episode, true, true);
+    OmdbVideo omdbVideo = new OmdbClient().search(null, title, null, season, episode, Type.episode, true, true);
     Assert.assertEquals("tt1480055", omdbVideo.getImdbId());
     Assert.assertEquals("Winter Is Coming", omdbVideo.getTitle());
     Assert.assertTrue(omdbVideo.getYear().startsWith("2011"));

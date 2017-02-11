@@ -15,17 +15,17 @@ import com.ninthridge.omdbclient.model.Type;
 
 public class OmdbClient {
 
-  public static String HOST = "www.omdbapi.com";
-  public static String USER_AGENT = "com.ninthridge.omdbclient";
+  private final static String HOST = "www.omdbapi.com";
+  private final static String USER_AGENT = "com.ninthridge.omdbclient";
   
-  private static ObjectMapper objectMapper;
+  private final static ObjectMapper objectMapper;
   
   static {
     objectMapper = new ObjectMapper();
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
   }
   
-  public static OmdbVideo search(String imdbId, String title, Integer year, Integer season, Integer episode, Type type, boolean fullPlot, boolean tomates) throws OmdbException, IOException {
+  public OmdbVideo search(String imdbId, String title, Integer year, Integer season, Integer episode, Type type, boolean fullPlot, boolean tomates) throws OmdbException, IOException {
     if(imdbId == null && title == null) {
       throw new OmdbException("imdbId or title must not be null");
     }
@@ -34,8 +34,6 @@ public class OmdbClient {
     
     if(imdbId != null) {
       url += "i=" + imdbId;
-      
-      
     }
     
     if(title != null) {
