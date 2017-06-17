@@ -1,6 +1,7 @@
 package com.ninthridge.omdbclient;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.ninthridge.omdbclient.OmdbClient;
@@ -8,6 +9,7 @@ import com.ninthridge.omdbclient.exception.OmdbException;
 import com.ninthridge.omdbclient.model.OmdbVideo;
 import com.ninthridge.omdbclient.model.Type;
 
+@Ignore
 public class OmdbClientTest {
   
   @Test
