@@ -25,23 +25,23 @@ public class OmdbClient {
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
   }
   
-  public OmdbVideo search(String imdbId, String title, Integer year, Integer season, Integer episode, Type type, boolean fullPlot, boolean tomates) throws OmdbException, IOException {
+  public OmdbVideo search(String apiKey, String imdbId, String title, Integer year, Integer season, Integer episode, Type type, boolean fullPlot, boolean tomates) throws OmdbException, IOException {
+    if(apiKey == null) {
+      throw new OmdbException("Invalid apiKey");
+    }
+    
     if(imdbId == null && title == null) {
       throw new OmdbException("imdbId or title must not be null");
     }
     
-    String url = "http://" + HOST + "/?";
+    String url = "http://" + HOST + "/?apiKey=" + apiKey;
     
     if(imdbId != null) {
-      url += "i=" + imdbId;
+      url += "&i=" + imdbId;
     }
     
     if(title != null) {
-      
-      if(imdbId != null) {
-        url += "&";
-      }
-      url += "t=" + URLEncoder.encode(title, "UTF-8");
+      url += "&t=" + URLEncoder.encode(title, "UTF-8");
     }
     
     if(year != null) {
